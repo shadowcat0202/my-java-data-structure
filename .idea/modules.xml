@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/my data structure.iml" filepath="$PROJECT_DIR$/my data structure.iml" />
-      <module fileurl="file://$PROJECT_DIR$/my_Interface_form/my_Interface_form.iml" filepath="$PROJECT_DIR$/my_Interface_form/my_Interface_form.iml" />
     </modules>
   </component>
 </project>
