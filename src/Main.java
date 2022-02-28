@@ -1,6 +1,6 @@
 public class Main {
     public void arrayList_stub(){
-        ArrayList<Integer> arr = new ArrayList<Integer>();
+        ArrayList<Integer> arr = new ArrayList<>();
 
         arr.add(1);
         arr.add(4);
@@ -25,7 +25,8 @@ public class Main {
     }
 
     public static void main(String[] args){
-        //https://bangu4.tistory.com/194
+        //https://st-lab.tistory.com/category/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0
+
         Main test = new Main();
         //test.arrayList_stub();
         test.Stack_stub();
