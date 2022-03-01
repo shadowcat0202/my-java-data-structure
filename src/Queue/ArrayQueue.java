@@ -1,3 +1,5 @@
+package Queue;
+
 import my_Interface_form.Queue;
 
 import java.util.NoSuchElementException;
@@ -122,7 +124,7 @@ public class ArrayQueue<E> implements Queue<E> {
             array[i] = null;
         }
         //Arrays.fill(array, null);를 사용해도 무방하다
-        
+
         front = back = size = 0;
     }
 
