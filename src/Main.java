@@ -66,17 +66,6 @@ public class Main {
         }
         System.out.println();
     }
-
-    public static void main(String[] args){
-        //https://st-lab.tistory.com/category/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0
-
-        Main test = new Main();
-        //test.arrayList_stub();
-        //test.Stack_stub();
-        test.Heap_Stub();
-
-    }
-
     private static Comparator<Student> comparator = new Comparator<Student>() {
         @Override
         public int compare(Student o1, Student o2) {
@@ -84,7 +73,6 @@ public class Main {
             return o2.age - o1.age; //나이 내림차순
         }
     };
-
     private static class Student implements Comparable<Student>{
 
         String name;
@@ -99,7 +87,7 @@ public class Main {
         public int compareTo(Student o) {
             if(this.name.compareTo(o.name) == 0)    //이름이 같다면 나이순
                 return this.age - o.age;
-            
+
             return this.name.compareTo(o.name);
         }
 
@@ -107,4 +95,16 @@ public class Main {
             return "이름 : " + this.name + "\t나이 : " + this.age;
         }
     }
+
+    public static void main(String[] args){
+        //https://st-lab.tistory.com/category/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0
+
+        Main test = new Main();
+        //test.arrayList_stub();
+        //test.Stack_stub();
+        //test.Heap_Stub();
+
+    }
+
+
 }
