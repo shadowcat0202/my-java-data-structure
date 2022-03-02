@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 
 public class Heap<E> {
-    private final Comparator<? super E> comparator; //객체의 정렬을 임의의 순서로 정렬하고 싶을때 Comparator를 파라미터로 받아 설정
+    private final Comparator<? super E> comparator; //객체의 정렬을 임의의 순서로 정렬하고 싶을때 comparator 파라미터로 받아 설정
     private static final int DEFAULT_CAPACITY = 10; //최소 용적
 
     private int size;
@@ -138,6 +139,7 @@ public class Heap<E> {
         else    siftDownComparable(idx, target);
     }
 
+    @SuppressWarnings("unchecked")
     private void siftDownComparator(int idx, E target, Comparator<? super E> comp){
         array[idx] = null;
         size--;
@@ -151,7 +153,12 @@ public class Heap<E> {
             
             Object childVal = array[child]; //왼쪽 자식의 값
 
+            //A.compareTo(B) -> return A - B;
+            //A == B    -> 0
+            //A < B     -> -1
+            //A > B     -> 1
             if(right <= size && comp.compare((E) childVal, (E) array[right]) > 0){   //size와 비교하는것은 해당 자식 노드 존재 여부 파악
+                //==childVal(left_value)값 보다 right_value값이 작은가를 물어보는 조건문 -> minHeap을 작성하기 위한 기본
                 child = right;
                 childVal = array[child];
             }
@@ -159,7 +166,7 @@ public class Heap<E> {
             //재배치 할 노드가 자식 노드보다 작을경우 반복 종료
             if(comp.compare(target, (E) childVal) <= 0) break;
 
-            array[parent] = child;
+            array[parent] = childVal;
             parent = child;
         }
         array[parent] = target;
@@ -169,7 +176,58 @@ public class Heap<E> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void siftDownComparable(int idx, E target) {
+        Comparable<? super E> comp = (Comparable<? super E>) target;
+
+        array[idx] = null;
+        size--;
+
+        int parent = idx;
+        int child;
+
+        while((child = getLeftChild(parent)) <= size){
+            int right = getRightChild(parent);
+
+            Object childVal = array[child];
+
+            //A.compareTo(B) -> return A - B;
+            //A == B    -> 0
+            //A < B     -> -1
+            //A > B     -> 1
+            if(right <= size && ((Comparable<? super E>) childVal).compareTo((E)array[right]) > 0){
+                child = right;
+                childVal = array[child];
+            }
+
+            if(comp.compareTo((E) childVal) <= 0)   break;
+
+            array[parent] = childVal;
+            parent = child;
+
+        }
+        array[parent] = comp;
+
+        if(array.length > DEFAULT_CAPACITY && size < array.length / 4) {
+            resize(Math.max(DEFAULT_CAPACITY, array.length / 2));
+        }
+    }
+
+    public int size(){
+        return this.size;
+    }
+
+    public E peek(){
+        if(array[1] == null)    throw new NoSuchElementException();
+        return (E) array[1];
+    }
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public Object[] toArray(){
+        return Arrays.copyOf(array, size + 1);
     }
 
 
