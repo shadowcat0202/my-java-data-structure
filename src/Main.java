@@ -4,7 +4,14 @@ public class Main {
 
 
 
-    public Main() {
+    public void stub(){
+        String[] input = {"이순신", "거북선", "이황", "세종대왕", "가나다라"};
+
+        for(String name : input){
+            int hash = Math.abs(((Object) name).hashCode());
+            System.out.println(name + "=\t" + hash + "\nhash >>> 16:\t" + (hash >>> 16));
+        }
+
     }
 
     public void arrayList_stub(){
@@ -103,6 +110,7 @@ public class Main {
         //test.arrayList_stub();
         //test.Stack_stub();
         //test.Heap_Stub();
+        test.stub();
 
     }
 
